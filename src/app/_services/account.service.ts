@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { User } from "@app/_models";
+import { User } from '@app/_models';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AccountService {
   constructor(private http: HttpClient) {}

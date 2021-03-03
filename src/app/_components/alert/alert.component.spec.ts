@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Alert, AlertType } from '@app/_models';
+import { AlertType } from '@app/_models';
 import { AlertService } from '@app/_services';
 import { By } from '@angular/platform-browser';
 
 import { AlertComponent } from './alert.component';
-import { DebugElement } from '@angular/core';
 
 describe('AlertComponent', () => {
   let component: AlertComponent;
@@ -43,7 +42,7 @@ describe('AlertComponent', () => {
     expect(p?.textContent).toEqual(alert.message);
   });
 
-  it('should remove the alert message', async () => {
+  it('should remove the alert message', () => {
     alertService.success(alert.message);
     fixture.detectChanges();
 
