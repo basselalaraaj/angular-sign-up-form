@@ -5,6 +5,7 @@ import { AlertService } from './alert.service';
 
 describe('AlertService', () => {
   let service: AlertService;
+  const testMessage = 'test message';
 
   beforeEach(() => TestBed.configureTestingModule({}));
 
@@ -21,8 +22,9 @@ describe('AlertService', () => {
     service.onAlert().subscribe((x) => {
       alert(x);
     });
-    service.success('test message');
+    service.success(testMessage);
     expect(alert.calls.count()).toEqual(1);
+    expect(alert.calls.mostRecent().args[0].message).toEqual(testMessage);
   });
 
   it('should test the error alert', () => {
@@ -30,8 +32,9 @@ describe('AlertService', () => {
     service.onAlert().subscribe((x) => {
       alert(x);
     });
-    service.error('test message');
+    service.error(testMessage);
     expect(alert.calls.count()).toEqual(1);
+    expect(alert.calls.mostRecent().args[0].message).toEqual(testMessage);
   });
 
   it('should test the alert', () => {
@@ -39,9 +42,10 @@ describe('AlertService', () => {
     service.onAlert().subscribe((x) => {
       alert(x);
     });
-    const alertMessage = new Alert({ message: 'test message' });
+    const alertMessage = new Alert({ message: testMessage });
     service.alert(alertMessage);
     expect(alert.calls.count()).toEqual(1);
+    expect(alert.calls.mostRecent().args[0].message).toEqual(testMessage);
   });
 
   it('should test the clear alert', () => {
@@ -51,5 +55,6 @@ describe('AlertService', () => {
     });
     service.clear();
     expect(alert.calls.count()).toEqual(1);
+    expect(alert.calls.mostRecent().args[0].id).toEqual('default-alert');
   });
 });
