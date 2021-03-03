@@ -1,10 +1,14 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { AccountModule } from './account/account.module';
 import { AppComponent } from './app.component';
+import { AlertComponent } from './_components';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [AccountModule, HttpClientModule],
+      declarations: [AppComponent, AlertComponent],
     }).compileComponents();
   });
 

@@ -16,6 +16,6 @@ import { AlertComponent } from './_components';
     HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, AlertComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

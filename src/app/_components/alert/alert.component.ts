@@ -7,7 +7,6 @@ import { AlertService } from '@app/_services';
 @Component({ selector: 'alert', templateUrl: 'alert.component.html' })
 export class AlertComponent implements OnInit, OnDestroy {
   @Input() id = 'default-alert';
-  @Input() fade = true;
 
   alerts: Alert[] = [];
   alertSubscription: Subscription = new Subscription();
@@ -37,15 +36,7 @@ export class AlertComponent implements OnInit, OnDestroy {
   removeAlert(alert: Alert) {
     if (!this.alerts.includes(alert)) return;
 
-    if (this.fade) {
-      alert.fade = true;
-
-      setTimeout(() => {
-        this.alerts = this.alerts.filter((x) => x !== alert);
-      }, 250);
-    } else {
-      this.alerts = this.alerts.filter((x) => x !== alert);
-    }
+    this.alerts = this.alerts.filter((x) => x !== alert);
   }
 
   cssClass(alert: Alert) {
@@ -62,10 +53,6 @@ export class AlertComponent implements OnInit, OnDestroy {
 
     if (alert.type) {
       classes.push(alertTypeClass[alert.type]);
-    }
-
-    if (alert.fade) {
-      classes.push('fade');
     }
 
     return classes.join(' ');

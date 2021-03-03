@@ -10,7 +10,6 @@ export class Alert {
   type: AlertType | undefined;
   message: string | undefined;
   autoClose: boolean | undefined;
-  fade: boolean | undefined;
 
   constructor(init?: Partial<Alert>) {
     Object.assign(this, init);
