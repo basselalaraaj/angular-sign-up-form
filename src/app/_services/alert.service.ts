@@ -13,20 +13,20 @@ export class AlertService {
     return this.subject.asObservable().pipe(filter((x) => x && x.id === id));
   }
 
-  success(message: string, options?: any) {
+  success(message: string, options?: any): void {
     this.alert(new Alert({ ...options, type: AlertType.Success, message }));
   }
 
-  error(message: string, options?: any) {
+  error(message: string, options?: any): void {
     this.alert(new Alert({ ...options, type: AlertType.Error, message }));
   }
 
-  alert(alert: Alert) {
+  alert(alert: Alert): void {
     alert.id = alert.id || this.defaultId;
     this.subject.next(alert);
   }
 
-  clear(id = this.defaultId) {
+  clear(id = this.defaultId): void {
     this.subject.next(new Alert({ id }));
   }
 }

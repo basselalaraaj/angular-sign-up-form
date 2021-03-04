@@ -2,10 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AccountService } from './account.service';
-import { defer } from 'rxjs';
+import { defer, Observable } from 'rxjs';
 import { User } from '@app/_models';
 
-export function asyncData<T>(data: T) {
+export function asyncData<T>(data: T): Observable<T> {
   return defer(() => Promise.resolve(data));
 }
 

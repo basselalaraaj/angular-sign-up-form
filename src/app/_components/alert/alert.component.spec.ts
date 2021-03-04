@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AlertType } from '@app/_models';
 import { AlertService } from '@app/_services';
 import { By } from '@angular/platform-browser';
@@ -15,12 +15,14 @@ describe('AlertComponent', () => {
     message: 'Was added successfully.',
   };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AlertComponent],
-      providers: [AlertService],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AlertComponent],
+        providers: [AlertService],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AlertComponent);

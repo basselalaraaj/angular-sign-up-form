@@ -8,16 +8,23 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
+  it('should fill in sign up form', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('angular-signup app is running!');
+    await page.setFirstNameInput();
+    await page.setLastNameInput();
+    await page.setEmailInput();
+    await page.setPasswordInput();
+    await page.clickSubmitButton();
+    expect(await page.getSuccessMessage()).toEqual('Registration successful');
   });
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+    expect(logs).not.toContain(
+      jasmine.objectContaining({
+        level: logging.Level.SEVERE,
+      } as logging.Entry)
+    );
   });
 });

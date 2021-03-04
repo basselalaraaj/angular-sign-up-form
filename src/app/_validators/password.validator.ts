@@ -1,6 +1,10 @@
-import { FormControl } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 export class PasswordValidator {
-  static validPassword(fc: FormControl) {
+  static validPassword(
+    fc: AbstractControl
+  ): {
+    passwordCase: boolean;
+  } | null {
     const hasUpper = /[A-Z]/.test(fc.value);
     const hasLower = /[a-z]/.test(fc.value);
 
@@ -15,7 +19,11 @@ export class PasswordValidator {
     return null;
   }
 
-  static doesContainFirstAndLastName(fc: FormControl) {
+  static doesContainFirstAndLastName(
+    fc: AbstractControl
+  ): {
+    passwordContainsName: boolean;
+  } | null {
     const firstName = fc.get('firstName')?.value;
     const lastName = fc.get('lastName')?.value;
     const password = fc.get('password')?.value;

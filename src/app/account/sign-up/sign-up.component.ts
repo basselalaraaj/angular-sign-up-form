@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { PasswordValidator } from '@app/_validators/password.validator';
 import { AccountService, AlertService } from '@app/_services';
 
 @Component({
-  selector: 'sign-up',
+  selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
 })
 export class SignUpComponent implements OnInit {
@@ -20,7 +25,7 @@ export class SignUpComponent implements OnInit {
     private alertService: AlertService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.signUpForm = this.formBuilder.group(
       {
         firstName: ['', Validators.required],
@@ -46,11 +51,13 @@ export class SignUpComponent implements OnInit {
     );
   }
 
-  get f() {
+  get f(): {
+    [key: string]: AbstractControl;
+  } {
     return this.signUpForm.controls;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
 
     this.alertService.clear();

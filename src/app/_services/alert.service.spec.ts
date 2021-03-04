@@ -10,7 +10,7 @@ describe('AlertService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   beforeEach(() => {
-    service = TestBed.get(AlertService);
+    service = TestBed.inject(AlertService);
   });
 
   it('should be created', () => {
