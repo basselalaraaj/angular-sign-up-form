@@ -1,11 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { By } from '@angular/platform-browser';
 
 import { SignUpComponent } from './sign-up.component';
 import { AccountService, AlertService } from '@app/_services';
-import { AlertType } from '@app/_models';
 import { Observable } from 'rxjs';
 
 describe('SignUpComponent', () => {
