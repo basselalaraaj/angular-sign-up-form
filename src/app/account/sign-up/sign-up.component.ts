@@ -76,7 +76,8 @@ export class SignUpComponent implements OnInit {
           this.loading = false;
         },
         error: (error) => {
-          this.alertService.error(error);
+          console.log(error);
+          this.alertService.error('Not able to register your account');
           this.loading = false;
         },
       });

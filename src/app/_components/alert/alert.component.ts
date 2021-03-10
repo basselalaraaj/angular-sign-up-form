@@ -18,6 +18,7 @@ export class AlertComponent implements OnInit, OnDestroy {
       .onAlert(this.id)
       .subscribe((alert) => {
         if (!alert.message) {
+          this.alerts = [];
           return;
         }
 
@@ -47,7 +48,7 @@ export class AlertComponent implements OnInit, OnDestroy {
       [AlertType.Warning]: 'alert alert-warning',
     };
 
-    if (alert.type) {
+    if (alert.type || alert.type === 0) {
       classes.push(alertTypeClass[alert.type]);
     }
 
