@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  accountApi: 'https://demo-api.now.sh/users',
 };

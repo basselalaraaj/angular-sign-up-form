@@ -11,6 +11,7 @@ describe('AlertComponent', () => {
   let alertService: AlertService;
 
   const alert = {
+    id: 'default-alert',
     type: AlertType.Error,
     message: 'Was added successfully.',
   };
@@ -44,6 +45,15 @@ describe('AlertComponent', () => {
     expect(p?.textContent).toEqual(alert.message);
   });
 
+  it('should return empty if message is missing', () => {
+    alertService.success('');
+    fixture.detectChanges();
+
+    const bannerElement: HTMLElement = fixture.nativeElement;
+    const p = bannerElement.querySelector('span');
+    expect(p?.textContent).toBeUndefined();
+  });
+
   it('should remove the alert message', () => {
     alertService.success(alert.message);
     fixture.detectChanges();
@@ -59,5 +69,17 @@ describe('AlertComponent', () => {
 
     alertMessage = alertElement.querySelector('span');
     expect(alertMessage?.textContent).toBeUndefined();
+  });
+
+  it('should not remove a not existing the alert message', () => {
+    alertService.success(alert.message);
+    fixture.detectChanges();
+    expect(component.removeAlert({ ...alert, message: '' })).toBeUndefined();
+  });
+
+  it('should not remove a not existing the alert message', () => {
+    expect(component.cssClass(alert)).toEqual(
+      'alert alert-dismissable mt-4 container alert alert-danger'
+    );
   });
 });

@@ -1,5 +1,4 @@
-import { TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormBuilder } from '@angular/forms';
 
 import { PasswordValidator } from './password.validator';
 
@@ -24,6 +23,23 @@ describe('PasswordValidator.', () => {
           passwordCase: true,
         }
       );
+    });
+    it('should error if contains first or last name', () => {
+      const fb = new FormBuilder();
+      expect(
+        PasswordValidator.doesContainFirstAndLastName(
+          fb.group(
+            {
+              firstName: ['John'],
+              lastName: ['Peter'],
+              password: ['JohnPeter'],
+            },
+            { validators: PasswordValidator.doesContainFirstAndLastName }
+          )
+        )
+      ).toEqual({
+        passwordContainsName: true,
+      });
     });
   });
 });
