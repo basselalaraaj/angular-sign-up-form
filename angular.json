@@ -134,9 +134,21 @@
               "devServerTarget": "signup-form:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "signup-form"
+  "defaultProject": "signup-form",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
